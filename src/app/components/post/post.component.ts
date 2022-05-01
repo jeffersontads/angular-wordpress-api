@@ -52,4 +52,25 @@ export class PostComponent implements OnInit {
       }
     );
   }
+
+  // Paginação
+  page = 1;
+  next() {
+    this.blogService.nextUser((this.page += 1)).subscribe((data) => {
+      console.log('<- NEXT ->', data);
+      if (data) {
+        this.eventos = data;
+      }
+    });
+  }
+  previous() {
+    if (this.page > 1) {
+      this.blogService.previousUser((this.page -= 1)).subscribe((data) => {
+        console.log('<- PREVIOUS ->', data);
+        if (data) {
+          this.eventos = data;
+        }
+      });
+    }
+  }
 }

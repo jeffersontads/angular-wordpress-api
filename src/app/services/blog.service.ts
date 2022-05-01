@@ -5,7 +5,7 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, observable, Observer } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, retry } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -30,5 +30,19 @@ export class BlogService {
     return new Observable((observer: Observer<any>) => {
       observer.error(error);
     });
+  }
+
+  //Paginations
+  nextUser(page: any) {
+    const urlEventos = `${this.baseUrl}wp-json/wp/v2/eventos?page${page}&per_page=4`;
+    return this.http
+      .get(urlEventos)
+      .pipe(retry(2), catchError(this.errorHandle));
+  }
+  previousUser(page: any) {
+    const urlEventos = `${this.baseUrl}wp-json/wp/v2/eventos?page${page}&per_page=4`;
+    return this.http
+      .get(urlEventos)
+      .pipe(retry(2), catchError(this.errorHandle));
   }
 }

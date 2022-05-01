@@ -11,6 +11,11 @@ import { PostComponent } from './components/post/post.component';
 import { SinglePostComponent } from './components/single-post/single-post.component';
 import { BlogService } from './services/blog.service';
 
+import {
+  NgbPaginationModule,
+  NgbAlertModule,
+} from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [AppComponent, PostComponent, SinglePostComponent],
@@ -20,6 +25,8 @@ import { BlogService } from './services/blog.service';
     HttpClientModule,
     BrowserAnimationsModule,
     NgxSpinnerModule,
+    NgbAlertModule,
+    NgbPaginationModule,
   ],
   providers: [BlogService],
   bootstrap: [AppComponent],
