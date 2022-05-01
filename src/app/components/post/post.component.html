@@ -9,7 +9,14 @@ type="pacman"
 <p style="color: white" > Carregando... </p>
 </ngx-spinner>
 
-<div id="layout" class="pure-g">
+<div
+id="layout"
+class="pure-g"
+infinite-scroll
+(scrolled)="onScrollDown($event)"
+(scrolledUp)="onScrollUp($event)">
+
+>
   <div class="content pure-u-1 pure-u-md-3-4">
     <div>
 

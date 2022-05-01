@@ -12,6 +12,11 @@ export class PostComponent implements OnInit {
   eventos: any;
   errorMessage: any;
 
+  //infinite scroll
+  listArray: string[] = [];
+  sum = 20;
+  direction = '';
+
   constructor(
     private blogService: BlogService,
     private spinner: NgxSpinnerService
@@ -19,6 +24,7 @@ export class PostComponent implements OnInit {
 
   ngOnInit() {
     this.getTodosEventos();
+    this.appendItems();
 
     // this.spinner.show();
 
@@ -72,5 +78,37 @@ export class PostComponent implements OnInit {
         }
       });
     }
+  }
+
+  addItems(_method: string) {
+    for (let i = 0; i < this.sum; ++i) {
+      if (_method === 'push') {
+        this.listArray.push([i].join(''));
+      } else if (_method === 'unshift') {
+        this.listArray.unshift([i].join(''));
+      }
+    }
+  }
+  prependItems() {
+    this.addItems('unshift');
+  }
+  appendItems() {
+    this.addItems('push');
+  }
+
+  onScrollDown(ev: any) {
+    console.log('scrolled down!!', ev);
+
+    this.sum += 10;
+    this.appendItems();
+
+    this.direction = 'scroll down';
+  }
+  onScrollUp(ev: any) {
+    console.log('scrolled up!', ev);
+    this.sum += 10;
+    this.prependItems();
+
+    this.direction = 'scroll up';
   }
 }

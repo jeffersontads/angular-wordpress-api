@@ -11,6 +11,8 @@ import { PostComponent } from './components/post/post.component';
 import { SinglePostComponent } from './components/single-post/single-post.component';
 import { BlogService } from './services/blog.service';
 
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+
 import {
   NgbPaginationModule,
   NgbAlertModule,
@@ -27,6 +29,7 @@ import {
     NgxSpinnerModule,
     NgbAlertModule,
     NgbPaginationModule,
+    InfiniteScrollModule,
   ],
   providers: [BlogService],
   bootstrap: [AppComponent],
