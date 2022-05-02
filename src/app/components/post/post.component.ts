@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BlogService } from 'src/app/services/blog.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { LocalStorageService } from '../../services/localstorage/local-storage.service';
 
 @Component({
   selector: 'app-post',
@@ -19,7 +20,9 @@ export class PostComponent implements OnInit {
 
   constructor(
     private blogService: BlogService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+
+    private storage: LocalStorageService
   ) {}
 
   ngOnInit() {
